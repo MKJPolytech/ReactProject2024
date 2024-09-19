@@ -43,4 +43,4 @@ export default Notification;
 //                   {this.props.message}
 //               </span>
 //         </div>
-//     ); render 과거버전
+//     ); render 과거버전2
