@@ -40,14 +40,13 @@ class NotificationList extends React.Component {
                 })
             }
             else{
+                this.state = {
+                    notifications: [],
+                };
                clearInterval(timer);
-               Notification(notifications)
+
             }
         },2000);
-    }
-
-    componentDidUpdate(prevProps, prevState, snapshot) {
-        // console.log("this.componentDidMount() called");
     }
 
     componentWillUnmount() {    //요기 없으면 로딩 엄청 느림
