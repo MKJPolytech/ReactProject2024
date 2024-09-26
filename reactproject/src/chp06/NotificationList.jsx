@@ -4,12 +4,15 @@ import notification from "./Notification";
 
 const reservedNotifications = [
     {
+        id:1,
         message: "안녕하세여~ 오늘 일정을 알려드립니다."  
     },
     {
+        id:2,
         message: "현재 수업중인 웹프로그래밍활용 수업을 열심히 들으세요."
     },
     {
+        id:3,
         message: "열심히 듣고 Git에 Commit한 후 하교하시면 됩니다."
     }
 ]
@@ -27,7 +30,7 @@ class NotificationList extends React.Component {
 
     componentDidMount() {
         const {notifications} = this.state;
-
+        //
         timer = setInterval(() => {
             if(notifications.length < reservedNotifications.length){
                 const index = notifications.length
@@ -38,15 +41,20 @@ class NotificationList extends React.Component {
             }
             else{
                clearInterval(timer);
+               Notification(notifications)
             }
         },2000);
     }
 
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        // console.log("this.componentDidMount() called");
+    }
+
     componentWillUnmount() {    //요기 없으면 로딩 엄청 느림
         if (timer){                 //타이머 있을 때에만, 로딩 속도 더욱 개선
-            clearInterval(timer);   
+            clearInterval(timer);
         }
-        
+
     }
 
     render() {
@@ -54,7 +62,10 @@ class NotificationList extends React.Component {
             <div>
                 {
                     this.state.notifications.map((notification) => {
-                        return<Notification message={notification.message}/>
+                        return<Notification
+                            key={notification.id}
+                            id={notification.id}
+                            message={notification.message}/>
                     })
                 }
             </div>
